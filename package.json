@@ -9,6 +9,8 @@
     "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
     "build": "tsc",
     "build:check": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "prepare": "husky install",
     "pre-commit": "npm run lint",
     "pre-push": "npm run build:check",
