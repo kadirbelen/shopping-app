@@ -17,6 +17,10 @@ class UserService {
     return result;
   }
 
+  async getUsers() {
+    return await this.prisma.user.findMany();
+  }
+
   async getUserByUniqueField(query: Prisma.UserWhereUniqueInput) {
     return await this.prisma.user.findUnique({ where: query });
   }

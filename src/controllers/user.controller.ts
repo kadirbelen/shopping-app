@@ -12,6 +12,10 @@ class UserController {
     const salt = bcrypt.genSaltSync(10);
     const encrypted_password = bcrypt.hashSync(req.body.password, salt);
 
+    const userIsExist = await userService.getUserByUniqueField({ email: req.body.email });
+
+    if (userIsExist) throw new ApiError('User already exist', statusCode.BAD_REQUEST);
+
     const user = await userService.register({
       ...req.body,
       password: encrypted_password,
@@ -36,6 +40,18 @@ class UserController {
     const token = await generateToken(user.id);
 
     successResponse({ res, statusCode: statusCode.OK, data: token });
+  }
+
+  async getUsers(_req: Request, res: Response) {
+    const users = await userService.getUsers();
+
+    successResponse({ res, statusCode: statusCode.OK, data: users });
+  }
+
+  async getUser(req: Request, res: Response) {
+    const user = await userService.getUserByUniqueField({ id: parseInt(req.params.userId) });
+
+    successResponse({ res, statusCode: statusCode.OK, data: user });
   }
 }
 
