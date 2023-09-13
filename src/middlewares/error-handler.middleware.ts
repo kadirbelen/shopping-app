@@ -12,6 +12,8 @@ export const errorHandler = (err: Error, _req: Request, res: Response, _next: Ne
     return res.status(err.statusCode).json(err.toJSON());
   }
 
+  console.info('Internal server error', err);
+
   return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
     errors: [
       {
