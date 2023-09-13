@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import statusCode from 'http-status';
 
+import IRequestWithUserId from '../interfaces/request-with-user-id.interface';
 import { ApiError } from '../responses/errors/api.error';
 import { successResponse } from '../responses/success.response';
 import userService from '../services/user.service';
@@ -40,6 +41,12 @@ class UserController {
     const token = await generateToken(user.id);
 
     successResponse({ res, statusCode: statusCode.OK, data: token });
+  }
+
+  async profile(req: Request, res: Response) {
+    const user = await userService.getUserByUniqueField({ id: (req as IRequestWithUserId).userId });
+
+    successResponse({ res, statusCode: statusCode.OK, data: user });
   }
 
   async getUsers(_req: Request, res: Response) {

@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.post('/register', validator(registerSchema), userController.register);
 router.post('/login', validator(loginSchema), userController.login);
+router.get('/profile', authenticate, userController.profile);
 router.get('/', authenticate, authorization([UserRole.ADMIN]), userController.getUsers);
 router.get('/:userId', authenticate, authorization([UserRole.ADMIN]), userController.getUser);
 
