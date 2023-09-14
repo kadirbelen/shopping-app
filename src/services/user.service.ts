@@ -1,16 +1,11 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
+import prisma from '../utils/prisma-client.util';
 import { RegisterPayload } from '../validations/user.validation';
 
 class UserService {
-  prisma: PrismaClient;
-
-  constructor() {
-    this.prisma = new PrismaClient();
-  }
-
   async register(body: RegisterPayload) {
-    const result = await this.prisma.user.create({
+    const result = await prisma.user.create({
       data: body,
     });
 
@@ -18,11 +13,11 @@ class UserService {
   }
 
   async getUsers() {
-    return await this.prisma.user.findMany();
+    return await prisma.user.findMany();
   }
 
   async getUserByUniqueField(query: Prisma.UserWhereUniqueInput) {
-    return await this.prisma.user.findUnique({ where: query });
+    return await prisma.user.findUnique({ where: query });
   }
 }
 
