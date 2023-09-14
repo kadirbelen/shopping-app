@@ -1,31 +1,27 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Prisma } from '@prisma/client';
+
+import prisma from '../utils/prisma-client.util';
 
 class ProductService {
-  prisma: PrismaClient;
-
-  constructor() {
-    this.prisma = new PrismaClient();
-  }
-
   async create(body: Prisma.ProductCreateInput) {
-    return await this.prisma.product.create({
+    return await prisma.product.create({
       data: body,
     });
   }
 
   async update(productId: number, body: Prisma.ProductUpdateInput) {
-    return await this.prisma.product.update({
+    return await prisma.product.update({
       where: { id: productId },
       data: body,
     });
   }
 
   async list() {
-    return await this.prisma.product.findMany();
+    return await prisma.product.findMany();
   }
 
   async getUserByUniqueField(query: Prisma.ProductWhereUniqueInput) {
-    return await this.prisma.product.findUnique({ where: query });
+    return await prisma.product.findUnique({ where: query });
   }
 }
 
