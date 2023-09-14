@@ -20,6 +20,7 @@ model User {
   userToken UserToken?
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+  Order     Order?
 
   @@map("users")
 }
@@ -37,12 +38,38 @@ model UserToken {
 model Product {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(255)
-  price     Decimal
+  price     Float
   stock     Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("products")
+}
+
+model Order {
+  id         Int         @id @default(autoincrement())
+  user       User        @relation(fields: [userId], references: [id])
+  userId     Int         @unique
+  total      Float
+  address    String      @db.VarChar(500)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  orderItems OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id          Int      @id @default(autoincrement())
+  quantity    Int
+  price       Float
+  productName String   @db.VarChar(255)
+  order       Order    @relation(fields: [orderId], references: [id])
+  orderId     Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("order_items")
 }
 
 enum UserRole {

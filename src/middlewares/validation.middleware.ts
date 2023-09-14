@@ -12,6 +12,8 @@ export default function (schema: ZodSchema) {
 
       return next(new ValidationError(result.error));
     } else {
+      req.body = result.data;
+
       next();
     }
   };
