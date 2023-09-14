@@ -4,6 +4,7 @@ import 'express-async-errors';
 import express from 'express';
 
 import { errorHandler } from './middlewares/error-handler.middleware';
+import orderRouter from './routers/order.router';
 import productRouter from './routers/product.router';
 import userRouter from './routers/user.router';
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use('/users', userRouter);
 app.use('/products', productRouter);
+app.use('/orders', orderRouter);
 
 app.use(errorHandler);
 
