@@ -56,6 +56,9 @@
     "http-status": "^1.7.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3",
+    "pino": "^8.15.1",
+    "pino-http": "^8.5.0",
+    "pino-pretty": "^10.2.0",
     "zod": "^3.22.2"
   }
 }
