@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgresql://postgres:admin@db:5432/shopping-app?schema=public
+    depends_on:
+      - db
+    links:
+      - db
+    env_file:
+      - .env
+      - ./.env
+  db:
+    image: 'postgres:15-alpine'
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+volumes:
+  postgres_data:
