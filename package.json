@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build && node dist/index.js",
-    "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "start": "npx prisma migrate deploy && node dist/index.js",
+    "dev": "npm run build && npx prisma migrate dev && node dist/index.js",
     "build": "tsc",
     "build:check": "tsc --noEmit -p tsconfig.json",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
@@ -33,7 +32,7 @@
     "@types/express": "^4.17.17",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.6.0",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0", 
     "@typescript-eslint/parser": "^6.7.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
@@ -43,7 +42,7 @@
     "prettier": "^3.0.3",
     "prisma": "^5.2.0",
     "ts-node": "^10.9.1",
-    "tsc-watch": "^6.0.4",
+    "tsc-watch": "^6.0.4", 
     "typescript": "^5.2.2"
   },
   "dependencies": {
