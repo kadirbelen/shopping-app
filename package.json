@@ -16,7 +16,7 @@
     "pre-commit": "npm run lint",
     "pre-push": "npm run build:check",
     "commitlint": "commitlint --edit ${1}",
-    "test": "dotenv -e .env.test jest -- --runInBand"
+    "test": "npm run db:migrate:test && dotenv -e .env.test jest -- --runInBand"
   },
   "repository": {
     "type": "git",
