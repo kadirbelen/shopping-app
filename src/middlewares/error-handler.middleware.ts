@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 
+import { pinoLogger } from '../configs/logger.config';
 import { ApiError } from '../responses/errors/api.error';
 import { ValidationError } from '../responses/errors/validation.error';
 
@@ -12,7 +13,7 @@ export const errorHandler = (err: Error, _req: Request, res: Response, _next: Ne
     return res.status(err.statusCode).json(err.toJSON());
   }
 
-  console.info('Internal server error', err);
+  pinoLogger.error('Internal server error', err);
 
   return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
     errors: [

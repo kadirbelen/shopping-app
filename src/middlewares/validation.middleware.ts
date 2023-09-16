@@ -8,8 +8,6 @@ export default function (schema: ZodSchema) {
     const result = schema.safeParse(req.body);
 
     if (!result.success) {
-      console.log('res.error-->>', result.error);
-
       return next(new ValidationError(result.error));
     } else {
       req.body = result.data;
