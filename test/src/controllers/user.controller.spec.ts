@@ -33,9 +33,9 @@ describe('User Controller', () => {
   jest.spyOn(bcrypt, 'genSaltSync').mockReturnValue('mockedSalt');
   jest.spyOn(bcrypt, 'hashSync').mockReturnValue(TEST_PASSWORDS.KBuser52.hashed);
 
-  describe('getUsers', () => {
+  describe('list', () => {
     it('should return user list', async () => {
-      await userController.getUsers(req, res);
+      await userController.list(req, res);
 
       expect(res.status).toHaveBeenCalledWith(statusCode.OK);
       expect(res.json).toHaveBeenCalledWith({
@@ -47,11 +47,11 @@ describe('User Controller', () => {
     });
   });
 
-  describe('getUser', () => {
+  describe('get', () => {
     it('should return user details', async () => {
       req.params = { userId: dummyUsers[0].id.toString() };
 
-      await userController.getUser(req, res);
+      await userController.get(req, res);
 
       expect(res.status).toHaveBeenCalledWith(statusCode.OK);
       expect(res.json).toHaveBeenCalledWith({
