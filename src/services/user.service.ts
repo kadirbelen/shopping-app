@@ -12,7 +12,7 @@ class UserService {
     return result;
   }
 
-  async getUsers() {
+  async list() {
     return await prisma.user.findMany();
   }
 

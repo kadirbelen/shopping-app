@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx prisma migrate deploy && node dist/index.js",
-    "dev": "npm run build && npx prisma migrate dev && node dist/index.js",
+    "start": "npx prisma migrate deploy && node dist/src/index.js",
+    "dev": "npm run build && npx prisma migrate dev && node dist/src/index.js",
     "build": "tsc",
     "build:check": "tsc --noEmit -p tsconfig.json",
     "db:migrate:create": "npx prisma migrate dev --name $1",

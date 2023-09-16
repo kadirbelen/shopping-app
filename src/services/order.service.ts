@@ -40,7 +40,7 @@ class OrderService {
     });
   }
 
-  async getUserByUniqueField(query: Prisma.OrderWhereUniqueInput) {
+  async getOrderByUniqueField(query: Prisma.OrderWhereUniqueInput) {
     return await prisma.order.findUnique({ where: query, include: { user: true, orderItems: true } });
   }
 }

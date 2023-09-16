@@ -49,13 +49,13 @@ class UserController {
     successResponse({ res, statusCode: statusCode.OK, data: user });
   }
 
-  async getUsers(_req: Request, res: Response) {
-    const users = await userService.getUsers();
+  async list(_req: Request, res: Response) {
+    const users = await userService.list();
 
     successResponse({ res, statusCode: statusCode.OK, data: users });
   }
 
-  async getUser(req: Request, res: Response) {
+  async get(req: Request, res: Response) {
     const user = await userService.getUserByUniqueField({ id: parseInt(req.params.userId) });
 
     successResponse({ res, statusCode: statusCode.OK, data: user });

@@ -9,6 +9,6 @@ const router = express.Router();
 
 router.post('/', authenticate, validator(createSchema), orderController.create);
 router.get('/user/:userId', authenticate, orderController.listOrderByCustomer);
-router.get('/:orderId', authenticate, orderController.getOrderDetails);
+router.get('/:orderId', authenticate, orderController.get);
 
 export default router;

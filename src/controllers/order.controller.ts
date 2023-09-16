@@ -43,8 +43,8 @@ class OrderController {
     successResponse({ res, statusCode: statusCode.OK, data: orders });
   }
 
-  async getOrderDetails(req: Request, res: Response) {
-    const order = await orderService.getUserByUniqueField({ id: parseInt(req.params.orderId) });
+  async get(req: Request, res: Response) {
+    const order = await orderService.getOrderByUniqueField({ id: parseInt(req.params.orderId) });
 
     if (!order) throw new ApiError(`Order not found: ${req.params.orderId}`, statusCode.BAD_REQUEST);
 

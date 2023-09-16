@@ -14,7 +14,7 @@ router.post('/login', validator(loginSchema), userController.login);
 router.get('/profile', authenticate, userController.profile);
 //* admin can add new admin or user(customer)
 router.post('/', authenticate, authorization([UserRole.ADMIN]), validator(registerSchema), userController.register);
-router.get('/:userId', authenticate, authorization([UserRole.ADMIN]), userController.getUser);
-router.get('/', authenticate, authorization([UserRole.ADMIN]), userController.getUsers);
+router.get('/:userId', authenticate, authorization([UserRole.ADMIN]), userController.get);
+router.get('/', authenticate, authorization([UserRole.ADMIN]), userController.list);
 
 export default router;
