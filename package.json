@@ -10,6 +10,7 @@
     "build:check": "tsc --noEmit -p tsconfig.json",
     "db:migrate:create": "npx prisma migrate dev --name $1",
     "db:migrate:test": "dotenv -e .env.test npx prisma migrate dev",
+    "db:create-admin-account": "npx ts-node ./prisma/scripts/create-admin-account.script",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "prepare": "husky install",
